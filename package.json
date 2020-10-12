@@ -1,0 +1,19 @@
+{
+    "name": "ask-generic",
+    "version": "1.0.0",
+    "description": "Uma plataforma de perguntas e respostas ao estilo yahoo",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MoraesFS-N/ask-generic.git"
+    },
+    "author": "Moraes Neto",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MoraesFS-N/ask-generic/issues"
+    },
+    "homepage": "https://github.com/MoraesFS-N/ask-generic#readme"
+}
