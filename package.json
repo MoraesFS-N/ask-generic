@@ -15,5 +15,9 @@
     "bugs": {
         "url": "https://github.com/MoraesFS-N/ask-generic/issues"
     },
-    "homepage": "https://github.com/MoraesFS-N/ask-generic#readme"
+    "homepage": "https://github.com/MoraesFS-N/ask-generic#readme",
+    "dependencies": {
+        "ejs": "^3.1.5",
+        "express": "^4.17.1"
+    }
 }
