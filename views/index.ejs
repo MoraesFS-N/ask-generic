@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ask Generic</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -25,6 +26,18 @@
         <% } else { %>
             <h4>Nenhum erro</h4>
             <% } %>
+
+                <% produtos.forEach(produto => { %>
+                    <hr>
+                    <p>Produto:
+                        <%=  produto.nome%>
+                    </p>
+
+                    <p>Preço:
+                        <%=  produto.preco%>
+                    </p>
+
+                    <% }); %>
 </body>
 
 </html>
