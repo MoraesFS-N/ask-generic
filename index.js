@@ -1,6 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const connection = require('./database/database');
+
+
+connection.authenticate()
+    .then(() => {
+    console.log('Conexão estabelecida');
+    })
+    .catch((err) => {
+    console.log('Erro ao conectar ao banco de dados');
+});
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -21,8 +31,6 @@ app.post('/salvarpergunta', (req, res) => {
         topico: req.body.topico,
         descricao: req.body.descricao
     }
-
-    
    res.send(pergunta);
 });
 
