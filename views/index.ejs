@@ -9,35 +9,7 @@
 </head>
 
 <body>
-    <h1>Guia Perguntas</h1>
-    <hr>
-    <h3>Olá meu nome é
-        <%= nome %> e tenho
-            <%= idade %> anos.
-    </h3>
-    <hr>
-    <h3>Eu trabalho na
-        <%= empresa %> e estudo
-            <%= faculdade %>.
-    </h3>
-
-    <% if(msg == true){ %>
-        <h4>Isto é uma mensagem de erro</h4>
-        <% } else { %>
-            <h4>Nenhum erro</h4>
-            <% } %>
-
-                <% produtos.forEach(produto => { %>
-                    <hr>
-                    <p>Produto:
-                        <%=  produto.nome%>
-                    </p>
-
-                    <p>Preço:
-                        <%=  produto.preco%>
-                    </p>
-
-                    <% }); %>
+    
 </body>
 
 </html>
