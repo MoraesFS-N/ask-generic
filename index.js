@@ -13,6 +13,10 @@ app.get('/perguntar', (req, res) => {
     res.render('perguntar')    
 })
 
+app.post('/salvapergunta', (req, res) => {
+    var dados = req.body
+})
+
 
 app.listen(8080, (err) => {
     if (err) {
