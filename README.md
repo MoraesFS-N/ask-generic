@@ -5,6 +5,7 @@
 - EJS               => https://ejs.co/
 - MySQL             => https://www.mysql.com/
 - Express.js        => https://expressjs.com/
+- Sequelize         =>
 
 ## Description 
-- Este projeto tem por objetivo consolidar o aprendizado das tecnologias citadas acima desenvolvendo uma plataforma de perguntas e respostas.
+- Este projeto tem por objetivo consolidar o aprendizado das tecnologias citadas acima desenvolvendo uma plataforma de perguntas e respostas. 
