@@ -2,24 +2,21 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
-
+const Pergunta = require('./database/Pergunta');
+const { raw } = require('body-parser');
 
 connection.authenticate()
     .then(() => {
     console.log('Conexão estabelecida');
     })
     .catch((err) => {
-    console.log('Erro ao conectar ao banco de dados');
+    console.log(`Erro ao conectar ao banco de dados:${err}`);
 });
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
 
 app.get('/perguntar', (req, res) => {
     res.render('perguntar');    
@@ -31,7 +28,24 @@ app.post('/salvarpergunta', (req, res) => {
         topico: req.body.topico,
         descricao: req.body.descricao
     }
-   res.send(pergunta);
+
+    Pergunta.create({
+        topic: pergunta.topico,
+        description: pergunta.descricao
+    }).then(() => {
+        res.redirect('/');
+    })
+
+});
+
+
+app.get('/', (req, res) => {
+    Pergunta.findAll({raw:true, order:[['id','DESC']]}).then(perguntas=>{
+        res.render('index', {
+            perguntas: perguntas
+        });   
+    });
+   
 });
 
 

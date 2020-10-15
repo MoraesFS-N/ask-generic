@@ -3,8 +3,24 @@
 
 <body>
     <%- include('partials/navbar'); -%>
-
-    <h1>bootstrap bufando</h1>
+    <div class="container">
+        <div class="head-body">
+            <h1 id="titulo-index">Perguntas</h1>
+            <a href="/perguntar"><button type="button" class="btn btn-outline-success">Perguntar</button></a>
+        </div>
+        <hr>
+        <% perguntas.forEach(pergunta => { %>
+            <div id="card" class="card">
+                <div id="card-topic" class="card-body">
+                    <h4><%= pergunta.topic %></h4>
+                </div>
+                <div class="card-footer">
+                    <p><%= pergunta.description %></p>
+                    <button type="button" class="btn btn-outline-danger ">Responder</button>
+                </div>
+            </div>
+        <% }) %> 
+    </div>
 </body>
 
 <%- include('partials/footer'); -%>
