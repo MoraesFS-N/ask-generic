@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 const Pergunta = require('./database/Pergunta');
-const { raw } = require('body-parser');
+const Resposta = require('./database/Resposta')
+
 
 connection.authenticate()
     .then(() => {
@@ -34,19 +35,62 @@ app.post('/salvarpergunta', (req, res) => {
         description: pergunta.descricao
     }).then(() => {
         res.redirect('/');
-    })
+    });
 
 });
 
 
 app.get('/', (req, res) => {
-    Pergunta.findAll({raw:true, order:[['id','DESC']]}).then(perguntas=>{
-        res.render('index', {
-            perguntas: perguntas
-        });   
+    Pergunta.findAll(
+        {   raw:true, 
+            order:[['id','DESC']]})
+        .then(perguntas=>{
+            res.render('index', {
+                perguntas: perguntas
+            });   
     });
    
 });
+
+app.get('/pergunta/:id',(req, res)=>{
+    var id = req.params.id;
+    Pergunta.findOne({
+        where: {id: id}
+    }).then(pergunta => {
+        if (pergunta != undefined) {
+
+            Resposta.findAll({
+                where: { questionId: pergunta.id },
+                order: [
+                    ['id','DESC']
+                ]
+            }).then(respostas => {
+                res.render('pergunta',{
+                    pergunta: pergunta,
+                    respostas: respostas
+                });
+            });
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
+
+app.post('/responder', (req, res) => {
+    
+    var body = req.body.corpo;
+    var questionId = req.body.pergunta;
+
+    Resposta.create({
+        body: body,
+        questionId: questionId 
+    }).then(() => {
+        res.redirect(`/pergunta/${questionId}`);
+    });
+
+});
+
 
 
 app.listen(8080, (err) => {

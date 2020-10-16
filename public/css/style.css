@@ -35,3 +35,11 @@ body{
     flex-direction: row;
     align-items: center;
 }
+
+#listagem{
+    margin-bottom: 24px;
+}
+
+#respota{
+    margin-top: 12px;
+}

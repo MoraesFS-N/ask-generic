@@ -1,0 +1,34 @@
+<%- include('partials/header'); -%>
+<body>
+    <%- include('partials/navbar'); -%>
+    
+    <div class="container">
+        <hr>
+        <h1><%= pergunta.topic %></h1>
+        <h3><%= pergunta.description %> </h3>
+        <hr>
+        <form method="POST" action="/responder">
+
+            <textarea placeholder="Digite sua Resposta" name="corpo" cols="30" rows="7" class="form-control" required></textarea>
+            <br>
+            <input type="hidden" name="pergunta" value="<%= pergunta.id %>" />
+            <button type="submit" class="btn btn-outline-danger">Responder Pergunta</button>
+        </form>
+        <br>
+        <h3>Respostas</h3>
+        <hr>
+        <% if (respostas.length == 0) { %>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-dark">Ainda não há nehuma resposta cadastrada</li>
+            </ul>
+        <% } else { %>
+                <ul class="list-group" id="listagem">
+                    <% respostas.forEach(respostas =>{ %>
+                        <li id="resposta" class="list-group-item list-group-item-success"><%= respostas.body %></li>
+                    <% }); %> 
+                </ul>
+            <% } %>
+    </div>
+</body>
+
+<%- include('partials/footer'); -%>
